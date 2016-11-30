@@ -131,7 +131,7 @@ int main()
         D.add(id(m+1, i+1, m), (n+1)*(m+1)+1, v);
     }
     
-    printf(D((n+1)*(m+1), (n+1)*(m+1)+1)>=s ? "possible\n" : "impossible\n");
+    printf(D((n+1)*(m+1), (n+1)*(m+1)+1)==s ? "possible\n" : "impossible\n");
 }
 
 /*
