@@ -1,22 +1,17 @@
 #include<cstdio>
 #include<vector>
+#include<algorithm>
 using namespace std;
-const int INF=0x3F3F3F3F;
+typedef long long lld;
 
-bool check(const vector<vector<int>>& a, int n, int x)
+bool check(const vector<vector<lld>>& a, int n, lld x)
 {
-    vector<vector<int>> b(2), c(2);
+    vector<vector<lld>> b(2), c(2);
     
     for(int i=0; i<2; i++)
-    {
         for(int j=0; j<n; j++)
-        {
-            if( a[i][j]<=x )
-                continue;
-            else
+            if( a[i][j]>x )
                 b[i].push_back(a[i][j]);
-        }
-    }
     
     for(int i=0; i<2; i++)
     {
@@ -37,15 +32,19 @@ bool check(const vector<vector<int>>& a, int n, int x)
 
 int main()
 {
-    int n, ans=-1;
+    int n;
     scanf("%d", &n);
-    vector<vector<int>> a(2, vector<int>(n));
+    vector<vector<lld>> a(2, vector<lld>(n));
+    lld ans=0;
     
     for(int i=0; i<2; i++)
         for(int j=0; j<n; j++)
-            scanf("%d", &a[i][j]);
+        {
+            scanf("%lld", &a[i][j]);
+            ans=max(ans, a[i][j]);
+        }
     
-    for(int l=0, r=INF; l<r; )
+    for(int l=0, r=ans; l<r; )
     {
         int m=(l+r)>>1;
         
@@ -55,7 +54,7 @@ int main()
             l=m+1;
     }
     
-    printf("%d\n", ans);
+    printf("%lld\n", ans);
 }
 
 /*
@@ -63,5 +62,9 @@ int main()
 5
 2 1 8 2 8
 9 9 4 1 4
+
+8
+7 7 15 15 2 2 4 4
+5 5 3 3 9 9 1 1
 
 */
