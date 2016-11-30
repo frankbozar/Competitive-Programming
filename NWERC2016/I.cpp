@@ -3,7 +3,7 @@
 #include<vector>
 #include<algorithm>
 using namespace std;
-const int INF=1<<20;
+const int INF=1<<30;
 
 vector<int> bfs(const vector<vector<int>>& e, queue<int>& Q)
 {
