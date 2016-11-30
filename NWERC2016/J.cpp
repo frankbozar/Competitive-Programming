@@ -3,14 +3,18 @@
 #include<vector>
 #include<algorithm>
 using namespace std;
-const int INF=1<<30;
+typedef long long lld;
+const int inf=1<<30;
+const lld INF=1LL<<60;
 
 struct dinic
 {
     struct edge
     {
-        int t, c, r;
-        edge(int _t, int _c, int _r) : t(_t), c(_c), r(_r){}
+        int t;
+        lld c;
+        int r;
+        edge(int _t, lld _c, int _r) : t(_t), c(_c), r(_r){}
     };
     
     vector<int> l;
@@ -22,7 +26,7 @@ struct dinic
         return e[E.t][E.r];
     }
     
-    void add(int u, int v, int w)
+    void add(int u, int v, lld w)
     {
         e[u].push_back(edge(v, w, e[v].size()));
         e[v].push_back(edge(v, 0, e[v].size()-1));
@@ -30,7 +34,7 @@ struct dinic
     
     bool bfs(int s, int t)
     {
-        l.assign(e.size(), INF);
+        l.assign(e.size(), inf);
         l[s]=1;
         queue<int> Q;
         
@@ -48,21 +52,21 @@ struct dinic
             }
         }
         
-        return l[t]<INF;
+        return l[t]<inf;
     }
     
-    int dfs(int s, int t, int num=INF)
+    lld dfs(int s, int t, lld num=INF)
     {
         if( s==t || num==0 )
             return num;
         
-        int ans=0;
+        lld ans=0;
         
         for(edge& E : e[s])
         {
             if( l[E.t]==l[s]+1 && E.c>0 )
             {
-                int flow=dfs(E.t, t, min(num, E.c));
+                lld flow=dfs(E.t, t, min(num, E.c));
                 rev(E).c+=flow;
                 E.c-=flow;
                 ans+=flow;
@@ -73,9 +77,9 @@ struct dinic
         return ans>0 ? ans : l[s]=0 ;
     }
     
-    int operator()(int s, int t)
+    lld operator()(int s, int t)
     {
-        int ans=0, tmp;
+        lld ans=0, tmp;
         
         while( bfs(s, t) )
             while( (tmp=dfs(s, t)) )
@@ -92,7 +96,8 @@ int id(int m, int i, int j)
 
 int main()
 {
-    int n, m, k, s=0;
+    int n, m, k;
+    lld s=0;
     scanf("%d%d%d", &n, &m, &k);
     vector<int> a(k), b(m);
     
@@ -131,7 +136,7 @@ int main()
         D.add(id(m+1, i+1, m), (n+1)*(m+1)+1, v);
     }
     
-    printf(D((n+1)*(m+1), (n+1)*(m+1)+1)==s ? "possible\n" : "impossible\n");
+    printf(D((n+1)*(m+1), (n+1)*(m+1)+1)>=s ? "possible\n" : "impossible\n");
 }
 
 /*
