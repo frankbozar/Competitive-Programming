@@ -27,7 +27,7 @@ bool check(const vector<vector<lld>>& a, int n, lld x)
         }
     }
     
-    return c[0]==c[1];
+    return c[0].empty() && c[1].empty();
 }
 
 int main()
