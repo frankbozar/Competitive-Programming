@@ -4,16 +4,17 @@
 #include<algorithm>
 using namespace std;
 const int INF=1<<20;
+vector<int> d;
+vector<vector<int>> a, e, f;
+vector<bool> A, B;
 
-int solve(const vector<int>& d, const vector<vector<int>>& f,
-          const vector<bool>& A, const vector<bool>& B,
-          vector<vector<int>>& a, int u=1)
+int solve(int u=1)
 {
     int ans=INF;
     
-    for(int v : f[u])
+    for(int v : e[u])
     {
-        ans=min(ans, solve(d, f, A, B, a, v));
+        ans=min(ans, solve(v));
         a[u][0]=min(a[u][0], a[v][0]+1);
         a[u][1]=min(a[u][1], a[v][1]+1);
     }
@@ -32,8 +33,10 @@ int main()
 {
     int n, m, k;
     scanf("%d%d%d", &n, &m, &k);
-    vector<vector<int>> e(n+1), f(n+1);
-    vector<bool> A(n+1, false), B(n+1, false);
+    e.resize(n+1);
+    f.resize(n+1);
+    A.assign(n+1, false);
+    B.assign(n+1, false);
     
     for(int i=0; i<m; i++)
     {
@@ -53,21 +56,21 @@ int main()
     {
         int l;
         scanf("%d", &l);
-        e[i].resize(l);
+        f[i].resize(l);
         
         for(int j=0; j<l; j++)
-            scanf("%d", &e[i][j]);
+            scanf("%d", &f[i][j]);
     }
     
     queue<int> Q;
-    vector<int> d(n+1, INF);
+    d.assign(n+1, INF);
     d[1]=0;
     
     for(Q.push(1); !Q.empty(); Q.pop())
     {
         int u=Q.front();
         
-        for(int v : e[u])
+        for(int v : f[u])
         {
             if( d[v]>d[u]+1 )
             {
@@ -76,12 +79,12 @@ int main()
             }
             
             if( d[v]==d[u]+1 )
-                f[u].push_back(v);
+                e[u].push_back(v);
         }
     }
     
-    vector<vector<int>> a(n+1, vector<int>(2, INF));
-    int ans=solve(d, f, A, B, a);
+    a.assign(n+1, vector<int>(2, INF));
+    int ans=solve();
     
     if( ans>=INF )
         printf("impossible\n");
