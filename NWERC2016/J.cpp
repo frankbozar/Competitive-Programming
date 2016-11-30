@@ -29,7 +29,7 @@ struct dinic
     void add(int u, int v, lld w)
     {
         e[u].push_back(edge(v, w, e[v].size()));
-        e[v].push_back(edge(v, 0, e[v].size()-1));
+        e[v].push_back(edge(u, 0, e[u].size()-1));
     }
     
     bool bfs(int s, int t)
