@@ -1,5 +1,4 @@
 #include<cstdio>
-#include<stack>
 #include<vector>
 #include<algorithm>
 using namespace std;
@@ -115,13 +114,7 @@ int main()
         
         for(int j=0; j<k; j++)
         {
-            if( j==0 )
-                dp[i][j]=INF;
-            else
-            {
-                dp[i][j]=dp[i][j-1];
-                pre[i][j]=pre[i][j-1];
-            }
+            dp[i][j]=INF;
             
             for(int l=0; l<=j; l++)
             {
@@ -136,21 +129,21 @@ int main()
         }
     }
     
-    stack<int> S;
+    vector<int> S;
     
     for(int i=0; i<k; i++)
     {
         if( !dp[n][i].inf() )
         {
             for(int j=i; n>0; j=pre[n--][j])
-                S.push(j);
+                S.push_back(j);
             
             break;
         }
     }
     
-    for(int i=1; !S.empty(); S.pop())
-        dp[i++][S.top()].show();
+    for(int i=1; !S.empty(); S.pop_back())
+        dp[i++][S.back()].show();
 }
 
 /*
