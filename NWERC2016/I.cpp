@@ -4,87 +4,72 @@
 #include<algorithm>
 using namespace std;
 const int INF=1<<20;
-vector<int> d;
-vector<vector<int>> a, e, f;
-vector<bool> A, B;
 
-int solve(int u=1)
+vector<int> bfs(const vector<vector<int>>& e, queue<int>& Q)
 {
-    int ans=INF;
+    vector<int> d(e.size(), INF);
     
-    for(int v : e[u])
-    {
-        ans=min(ans, solve(v));
-        a[u][0]=min(a[u][0], a[v][0]+1);
-        a[u][1]=min(a[u][1], a[v][1]+1);
-    }
-    
-    if( A[u] )
-        a[u][0]=0;
-    
-    if( B[u] )
-        a[u][1]=0;
-    
-    ans=min(ans, d[u]+a[u][0]+a[u][1]);
-    return ans;
-}
-
-int main()
-{
-    int n, m, k;
-    scanf("%d%d%d", &n, &m, &k);
-    e.resize(n+1);
-    f.resize(n+1);
-    A.assign(n+1, false);
-    B.assign(n+1, false);
-    
-    for(int i=0; i<m; i++)
-    {
-        int x;
-        scanf("%d", &x);
-        A[x]=true;
-    }
-    
-    for(int i=0; i<k; i++)
-    {
-        int x;
-        scanf("%d", &x);
-        B[x]=true;
-    }
-    
-    for(int i=1; i<=n; i++)
-    {
-        int l;
-        scanf("%d", &l);
-        f[i].resize(l);
-        
-        for(int j=0; j<l; j++)
-            scanf("%d", &f[i][j]);
-    }
-    
-    queue<int> Q;
-    d.assign(n+1, INF);
-    d[1]=0;
-    
-    for(Q.push(1); !Q.empty(); Q.pop())
+    for(; !Q.empty(); Q.pop())
     {
         int u=Q.front();
         
-        for(int v : f[u])
+        if( d[u]>=INF )
+            d[u]=0;
+        
+        for(int v : e[u])
         {
             if( d[v]>d[u]+1 )
             {
                 d[v]=d[u]+1;
                 Q.push(v);
             }
-            
-            if( d[v]==d[u]+1 )
-                e[u].push_back(v);
         }
     }
     
-    a.assign(n+1, vector<int>(2, INF));
-    int ans=solve();
+    return d;
+}
+
+int main()
+{
+    int n, m, k, ans=INF;
+    scanf("%d%d%d", &n, &m, &k);
+    vector<vector<int>> e(n+1), f(n+1);
+    queue<int> A, B, C;
+    
+    for(; m>0; m--)
+    {
+        int x;
+        scanf("%d", &x);
+        B.push(x);
+    }
+    
+    for(; k>0; k--)
+    {
+        int x;
+        scanf("%d", &x);
+        C.push(x);
+    }
+    
+    for(int i=1; i<=n; i++)
+    {
+        int l;
+        
+        for(scanf("%d", &l); l>0; l--)
+        {
+            int j;
+            scanf("%d", &j);
+            e[i].push_back(j);
+            f[j].push_back(i);
+        }
+    }
+    
+    A.push(1);
+    vector<int> a=bfs(e, A);
+    vector<int> b=bfs(f, B);
+    vector<int> c=bfs(f, C);
+    
+    for(int i=1; i<=n; i++)
+        ans=min(ans, a[i]+b[i]+c[i]);
     
     if( ans>=INF )
         printf("impossible\n");
