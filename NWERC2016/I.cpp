@@ -3,18 +3,23 @@
 #include<vector>
 #include<algorithm>
 using namespace std;
-const int INF=1<<30;
+const int INF=1<<20;
 
 vector<int> bfs(const vector<vector<int>>& e, queue<int>& Q)
 {
     vector<int> d(e.size(), INF);
     
+    while( d[Q.front()]>=INF )
+    {
+        int u=Q.front();
+        d[u]=0;
+        Q.pop();
+        Q.push(u);
+    }
+    
     for(; !Q.empty(); Q.pop())
     {
         int u=Q.front();
-        
-        if( d[u]>=INF )
-            d[u]=0;
         
         for(int v : e[u])
         {
