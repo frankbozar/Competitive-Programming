@@ -1,6 +1,7 @@
 #include<cstdio>
 #include<vector>
 using namespace std;
+const int INF=0x3F3F3F3F;
 
 bool check(const vector<vector<int>>& a, int n, int x)
 {
@@ -44,7 +45,7 @@ int main()
         for(int j=0; j<n; j++)
             scanf("%d", &a[i][j]);
     
-    for(int l=0, r=n+1; l<r; )
+    for(int l=0, r=INF; l<r; )
     {
         int m=(l+r)>>1;
         
