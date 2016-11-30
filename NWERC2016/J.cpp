@@ -91,6 +91,7 @@ struct dinic
 
 int id(int m, int i, int j)
 {
+    m=m*2+1;
     return i*m+j;
 }
 
@@ -110,7 +111,7 @@ int main()
     for(int i=0; i<m; i++)
         scanf("%d", &b[i]);
     
-    dinic D((n+1)*(m+1)+2);
+    dinic D((n+1)*(m*2+1)+2);
     
     for(int i=0; i<n; i++)
     {
@@ -128,15 +129,16 @@ int main()
         
         for(int j=0; j<m; j++)
         {
-            D.add((n+1)*(m+1), id(m+1, i, j), c[j]);
-            D.add(id(m+1, i, j), id(m+1, i+1, j), b[j]);
-            D.add(id(m+1, i+1, j), id(m+1, i+1, m), INF);
+            D.add((n+1)*(m*2+1), id(m, i, j*2), c[j]);
+            D.add(id(m, i, j*2), id(m, i, j*2+1), b[j]);
+            D.add(id(m, i, j*2+1), id(m, i, m*2), INF);
+            D.add(id(m, i, j*2+1), id(m, i+1, j*2), INF);
         }
         
-        D.add(id(m+1, i+1, m), (n+1)*(m+1)+1, v);
+        D.add(id(m, i, m*2), (n+1)*(m*2+1)+1, v);
     }
     
-    printf(D((n+1)*(m+1), (n+1)*(m+1)+1)>=s ? "possible\n" : "impossible\n");
+    printf(D((n+1)*(m*2+1), (n+1)*(m*2+1)+1)>=s ? "possible\n" : "impossible\n");
 }
 
 /*
