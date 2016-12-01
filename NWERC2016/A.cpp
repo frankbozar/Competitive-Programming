@@ -83,7 +83,7 @@ data solve(const data& A, const data& B, int k)
             if( ans[i]==A[i] )
                 k++;
             
-            for(int j=p+1; j<m && k>0; j++)
+            for(int j=i+1; j<m && k>0; j++)
             {
                 if( ans[j]!=0 )
                 {
