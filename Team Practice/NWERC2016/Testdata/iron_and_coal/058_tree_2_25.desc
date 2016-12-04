@@ -1,0 +1,1 @@
+the version with n=10^5, a=10 should slow down dijkstra a little bit, because there would be many nodes at the heap
