@@ -33,7 +33,7 @@ int main()
     {
         int tmp=min(k, min(q-p, a[i]-1));
         k-=tmp;
-        p+=tmp;
+        p=q-min(a[i]-1, q-p)+tmp;
         
         if( a[i]<q-p+1 )
             p+=q-p+1-a[i];
