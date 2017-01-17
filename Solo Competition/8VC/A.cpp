@@ -5,12 +5,12 @@ const int N=1024;
 
 int main()
 {
-    vector<bool> p(N, true);
+    vector<bool> p(N*N, true);
     p[0]=p[1]=false;
     
     for(int i=2; i<N; i++)
         if( p[i] )
-            for(int j=i*i; j<N; j+=i)
+            for(int j=i*i; j<N*N; j+=i)
                 p[j]=false;
     
     int n;

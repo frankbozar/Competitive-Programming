@@ -14,9 +14,6 @@ struct treap
         node(int _key) : key(_key){}
     } *root=NULL;
     
-    vector<bool> in;
-    treap(int n) : in(n, false){}
-    
     static int size(const node* p)
     {
         return p==NULL ? 0 : p->siz ;
@@ -66,50 +63,23 @@ struct treap
         }
     }
     
-    int query(int n, int m, int& p)
+    int query(int p, int q)
     {
-        
-        
-        
-        if( u>v )
-            swap(u, v);
-        
-        node *l, *r;
-        split(root, u+1, l, root);
-        split(root, v, root, r);
-        int ans=size(root);
-        
-        if( !in[u] )
-        {
-            root=merge(new node(u), root);
-            in[u]=true;
-        }
-        
-        if( !in[v] )
-        {
-            root=merge(root, new node(v));
-            in[v]=true;
-        }
-        
+        int u=min(p, q);
+        int v=max(p, q);
+        node *l, *r, *x, *y;
+        split(root, u, l, root);
+        split(root, u+1, x, root);
+        split(root, v+1, root, r);
+        split(root, v, root, y);
+        int ans= p<q ? size(root) : size(l)+size(r);
+        x=merge(x, new node(u));
+        y=merge(new node(v), y);
+        l=merge(l, x);
+        r=merge(y, r);
         root=merge(l, root);
         root=merge(root, r);
         return ans;
-    }
-    
-    static void show(const node* p)
-    {
-        if( p!=NULL )
-        {
-            show(p->l);
-            printf("%d ", p->key);
-            show(p->r);
-        }
-    }
-    
-    void show() const
-    {
-        show(root);
-        printf("\n");
     }
 };
 
@@ -117,12 +87,15 @@ int main()
 {
     int n, m;
     scanf("%d%d", &n, &m);
+    m=min(m, n-m);
     lld cnt=1;
-    treap T(n);
+    treap T;
     
     for(int p=0, i=1; i<=n; i++)
     {
-        cnt+=T.query(n, m, p)+1;
+        int q=(p+m)%n;
+        cnt+=T.query(p, q)+1;
+        p=q;
         printf(i==n ? "%lld\n" : "%lld ", cnt);
     }
 }
