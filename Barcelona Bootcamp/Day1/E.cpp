@@ -5,11 +5,6 @@ using namespace std;
 typedef long long lld;
 const int N=1<<20;
 
-struct user
-{
-    int i, p, a, b;
-};
-
 struct treap
 {
     struct node
@@ -20,21 +15,13 @@ struct treap
         node(int _key) : key(_key){}
     } *root=NULL;
     
-    void insert(int n)
-    {
-        node *l, *r;
-        split(root, n, l, r);
-        root=merge(l, new node(n));
-        root=merge(root, r);
-    }
-    
     static void pull(node* p)
     {
         if( p==NULL )
             return ;
         
         p->mvl=p->val+p->lft;
-        p->ans=p->val;
+        p->ans=max(p->val, 0LL);
         
         if( p->l!=NULL )
         {
@@ -128,6 +115,15 @@ struct treap
         }
     }
     
+    void insert(int n)
+    {
+        node *l, *r;
+        split(root, n, l, r);
+        root=new node(n);
+        root=merge(l, root);
+        root=merge(root, r);
+    }
+    
     void add(int x, int a, int b)
     {
         node *l, *r;
@@ -148,6 +144,11 @@ struct treap
         root=merge(root, r);
         return ans;
     }
+};
+
+struct user
+{
+    int i, p, a, b;
 };
 
 int main()
