@@ -1,5 +1,6 @@
 #include<cstdio>
 #include<cstdlib>
+#include<map>
 #include<vector>
 using namespace std;
 typedef long long lld;
@@ -11,9 +12,15 @@ struct treap
     {
         node *l=NULL, *r=NULL;
         int pri=rand(), key;
-        lld lft=0, val=0, alt=0, add=0, mvl=0, ans=0;
+        lld val=0, lft=0, add=0, alt=0, mvl=0, ans=0;
         node(int _key) : key(_key){}
     } *root=NULL;
+    
+    treap(int n=N)
+    {
+        for(int i=0; i<n; i++)
+            root=merge(root, new node(i));
+    }
     
     static void pull(node* p)
     {
@@ -21,7 +28,7 @@ struct treap
             return ;
         
         p->mvl=p->val+p->lft;
-        p->ans=max(p->val, 0LL);
+        p->ans=p->val;
         
         if( p->l!=NULL )
         {
@@ -53,22 +60,24 @@ struct treap
         
         p->lft+=x;
         
-        if( p->val<p->val+p->lft )
+        if( p->lft>0 )
         {
             p->val+=p->lft;
             p->lft=0;
         }
         
         p->lft+=y;
+        
         p->alt+=x;
         
-        if( p->add<p->add+p->alt )
+        if( p->alt>0 )
         {
             p->add+=p->alt;
             p->alt=0;
         }
         
         p->alt+=y;
+        
         p->ans=max(p->ans, max(p->val, p->mvl+x));
         p->mvl+=x+y;
     }
@@ -129,7 +138,12 @@ struct treap
         node *l, *r;
         split(root, a, l, root);
         split(root, b+1, root, r);
-        seta(root, x, 0);
+        
+        if( x<0 )
+            seta(root, 0, x);
+        else if( x>0 )
+            seta(root, x, 0);
+        
         root=merge(l, root);
         root=merge(root, r);
     }
@@ -166,8 +180,6 @@ int main()
         u.i=i;
         scanf("%d%d%d%d", &r, &u.p, &u.a, &u.b);
         a[r].push_back(u);
-        T.insert(u.a);
-        T.insert(u.b);
     }
     
     for(int i=1; i<N; i++)
