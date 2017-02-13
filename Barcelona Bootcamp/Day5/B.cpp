@@ -6,33 +6,45 @@ typedef complex<double> cplx;
 typedef long long lld;
 const double PI=acos(-1);
 const int MAXN=1<<21;
-const int maxn=MAXN-1;
+cplx omega[MAXN+1];
 
-void FFT(cplx a[],int rev) {
+void prefft()
+{
+    for(int i=0; i<=MAXN; i++)
+        omega[i]=cplx(cos(i*PI*2/MAXN), sin(i*PI*2/MAXN));
+}
+
+void FFT(cplx a[], int rev)
+{
     int n=MAXN;
     
-    for(int i=0,j=0;i<n;++i) {
-        if(i>j) std::swap(a[i],a[j]);
-        for(int k=n>>1;(j^=k)<k;k>>=1);
+    for(int j=0, i=0; i<n; i++)
+    {
+        if( j<i )
+            swap(a[i],a[j]);
+        
+        for(int k=n>>1; (j^=k)<k; k>>=1);
     }
     
-    for(int i=2;i<=n;i<<=1) {
+    for(int d=20, i=2; i<=n; i<<=1, d--)
+    {
         int m=i>>1;
-        cplx g(cos(PI/m),rev*sin(PI/m));
-        for(int j=0;j<n;j+=i) {
-            cplx w(1.0,0.0);
-            for(int k=0;k!=m;k++) {
+        
+        for(int j=0; j<n; j+=i)
+        {
+            for(int k=0; k<m; k++)
+            {
+                const cplx& w=omega[ rev>0 ? (k<<d) : MAXN-(k<<d) ];
                 cplx z=a[j+m+k]*w;
                 a[j+m+k]=a[j+k]-z;
-                a[j+k]=a[j+k]+z;
-                w=w*g;
+                a[j+k]+=z;
             }
         }
     }
     
-    if(rev==-1) {
-        for(int i=0;i<n;i++) a[i]/=n;
-    }
+    if(rev==-1)
+        for(int i=0; i<n; i++)
+            a[i]/=n;
 }
 
 inline lld powmod(lld x, lld p, lld m)
@@ -55,9 +67,7 @@ double b[MAXN+1]={0};
 
 int main()
 {
-    
-    
-    //prefft();
+    prefft();
     lld n, m;
     scanf("%lld%lld", &n, &m);
     
