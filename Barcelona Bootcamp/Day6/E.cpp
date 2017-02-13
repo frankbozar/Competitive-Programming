@@ -55,7 +55,7 @@ struct dinic
         return l[t]<inf;
     }
     
-    lld dfs(int s, int t, lld num=INF)
+    lld dfs(int s, int t, lld num=INF, int d=0)
     {
         if( s==t || num==0 )
             return num;
@@ -66,7 +66,7 @@ struct dinic
         {
             if( l[E.t]==l[s]+1 )
             {
-                lld flow=dfs(E.t, t, min(num, E.c));
+                lld flow=dfs(E.t, t, min(num, E.c), d+1);
                 rev(E).c+=flow;
                 E.c-=flow;
                 ans+=flow;
