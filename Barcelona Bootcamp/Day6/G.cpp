@@ -16,14 +16,15 @@ struct dinic
         edge(int _t, lld _c, int _r) : t(_t), c(_c), r(_r){}
     };
     
-    vector<int> l;
+    vector<int> l, d, p;
     vector<vector<edge>> e;
-    dinic(int n) : e(n+1){}
+    dinic(int n) : d(n+1, 0), e(n+1){}
     
     void add(int u, int v, lld w)
     {
         e[u].push_back(edge(v, w, e[v].size()));
         e[v].push_back(edge(u, 0, e[u].size()-1));
+        d[u]++, d[v]++;
     }
     
     edge& rev(const edge& E)
@@ -31,7 +32,7 @@ struct dinic
         return e[E.t][E.r];
     }
     
-    bool bfs(int s, int t)
+    bool bfs(int s, int t, lld k)
     {
         const int inf=e.size()+1;
         l.assign(e.size(), inf);
@@ -44,7 +45,7 @@ struct dinic
             
             for(const edge& E : e[s])
             {
-                if( l[E.t]>l[s]+1 && E.c>0 )
+                if( l[E.t]>l[s]+1 && E.c>=k )
                 {
                     l[E.t]=l[s]+1;
                     Q.push(E.t);
@@ -55,22 +56,28 @@ struct dinic
         return l[t]<inf;
     }
     
-    lld dfs(int s, int t, lld num=INF)
+    lld dfs(int s, int t, lld k, lld num=INF)
     {
-        if( s==t || num==0 )
+        if( s==t )
             return num;
+        else if( num<k )
+            return 0;
         
         lld ans=0;
         
-        for(edge& E : e[s])
+        for(; p[s]>0; p[s]--)
         {
+            edge& E=e[s][ p[s]-1 ];
+            
             if( l[E.t]==l[s]+1 )
             {
-                lld flow=dfs(E.t, t, min(num, E.c));
+                lld flow=dfs(E.t, t, k, min(num, E.c));
                 rev(E).c+=flow;
                 E.c-=flow;
                 ans+=flow;
-                num-=flow;
+                
+                if( (num-=flow)==0 )
+                    break;
             }
         }
         
@@ -81,9 +88,15 @@ struct dinic
     {
         lld ans=0, tmp;
         
-        while( bfs(s, t) )
-            while( (tmp=dfs(s, t)) )
-                ans+=tmp;
+        const lld k=1;
+        //for(lld k=INF; k>0; k>>=1)
+            while( bfs(s, t, k) )
+            {
+                p=d;
+                
+                while( (tmp=dfs(s, t, k)) )
+                    ans+=tmp;
+            }
         
         return ans;
     }
