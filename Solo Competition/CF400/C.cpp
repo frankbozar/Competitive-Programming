@@ -17,7 +17,7 @@ int main()
         M[sum]++;
         scanf("%lld", &x);
         sum+=x;
-        set<int> S;
+        set<lld> S;
         
         for(x=1; S.find(x)==S.end() && -INF<=x && x<=INF; x*=m)
         {
