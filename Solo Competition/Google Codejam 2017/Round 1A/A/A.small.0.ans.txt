@@ -1,0 +1,418 @@
+Case #1:
+GGG
+CCC
+JJJ
+Case #2:
+CODE
+JJAM
+JJAM
+Case #3:
+CA
+KE
+Case #4:
+ACCC
+EEEE
+BDDF
+Case #5:
+EEEC
+AAAA
+BDDD
+Case #6:
+AAAA
+BBBB
+CCCC
+Case #7:
+AADH
+BFEG
+CCCC
+Case #8:
+DD?
+DDD
+CBE
+AAA
+Case #9:
+EDD
+BFF
+AAA
+CCC
+Case #10:
+DDEE
+BBBB
+ACCC
+Case #11:
+DCC
+ABB
+Case #12:
+ABCD
+ABCD
+ABCD
+Case #13:
+ABCD
+ABCD
+ABCD
+Case #14:
+AAE
+DBF
+DBF
+CCC
+Case #15:
+FBD
+FBD
+ECC
+AAA
+Case #16:
+AAB
+Case #17:
+DDD
+EEE
+BBB
+AFC
+Case #18:
+ADD
+BBB
+CEE
+Case #19:
+A
+A
+Case #20:
+CCJ?
+CCJJ
+CCJJ
+Case #21:
+EEE
+CF?
+CFF
+DAB
+Case #22:
+AB
+Case #23:
+EEDC
+ABBB
+ABBB
+Case #24:
+BFD
+KCA
+LGH
+JIE
+Case #25:
+CGH
+IBJ
+KED
+FLA
+Case #26:
+CCC
+AAB
+Case #27:
+KFLG
+IJBA
+HCED
+Case #28:
+AAE
+DDD
+BBB
+FCC
+Case #29:
+CCEE
+AAIH
+GDBF
+Case #30:
+ABBB
+ABBB
+DECC
+Case #31:
+GGH
+AIK
+FJB
+CED
+Case #32:
+ADGE
+CCBF
+HHHH
+Case #33:
+CDE
+FBA
+Case #34:
+ABC
+DDD
+EEE
+Case #35:
+DB
+AC
+Case #36:
+CCED
+AHGB
+FFFF
+Case #37:
+HDA
+ICE
+GFF
+BBB
+Case #38:
+FCEA
+IBDH
+GGGG
+Case #39:
+AABB
+CDEE
+CDEE
+Case #40:
+CBBB
+EAAA
+DDDD
+Case #41:
+A
+Case #42:
+CCC
+DEE
+AAA
+FFB
+Case #43:
+BBB
+AAA
+Case #44:
+DDGB
+FICA
+HHEE
+Case #45:
+DDD
+BAC
+EEE
+EEE
+Case #46:
+AAAA
+BBBB
+CCCC
+Case #47:
+ECCC
+DDDD
+AABB
+Case #48:
+CAE
+FBD
+GGG
+GGG
+Case #49:
+DDD
+AAA
+FEE
+CBG
+Case #50:
+IGGG
+FABB
+HDEC
+Case #51:
+EFGG
+BACC
+DDDD
+Case #52:
+DEFA
+CCBB
+CCBB
+Case #53:
+EEDC
+GGAB
+HHHF
+Case #54:
+EJB
+FKI
+GHD
+CCA
+Case #55:
+AAA
+Case #56:
+AA
+BB
+CC
+DD
+EE
+FF
+Case #57:
+BB
+AA
+D?
+DD
+CE
+CE
+Case #58:
+CCD
+BEA
+Case #59:
+D??
+DDD
+CBE
+FAA
+Case #60:
+A
+B
+B
+C
+C
+D
+D
+E
+E
+F
+F
+F
+Case #61:
+FJIB
+GDKC
+HEAL
+Case #62:
+EEE
+CAF
+BBB
+DDD
+Case #63:
+ABB
+CCC
+DEE
+FFF
+Case #64:
+CAA
+EEE
+BBB
+DFF
+Case #65:
+ABBCCC
+DDEEFF
+Case #66:
+EBD
+AAC
+AAC
+AAC
+Case #67:
+BBBB
+AAAA
+Case #68:
+AFF
+ECC
+DDD
+BBB
+Case #69:
+BEFA
+HHDG
+CCCC
+Case #70:
+EE?
+EEE
+BBB
+CDA
+Case #71:
+BBF
+CAA
+DE?
+DEE
+Case #72:
+AAAA
+BBBB
+CCCC
+Case #73:
+CCBD
+AAAE
+AAAE
+Case #74:
+BA
+BA
+Case #75:
+EEE
+DDD
+ABB
+CFF
+Case #76:
+AAAA
+EEEE
+CBDD
+Case #77:
+A
+B
+Case #78:
+DBAC
+EEEE
+EEEE
+Case #79:
+AA
+AA
+B?
+BB
+Case #80:
+BDCC
+EEEE
+AAAA
+Case #81:
+ABCD
+ABCD
+ABCD
+Case #82:
+ABB
+CCC
+DDD
+EEF
+Case #83:
+AA
+AA
+Case #84:
+BAAA
+DCCC
+EEEE
+Case #85:
+AA
+Case #86:
+BDE
+FCA
+HIJ
+GGG
+Case #87:
+ABBCCDDEEFFF
+Case #88:
+BAG
+CFJ
+DHI
+EEE
+Case #89:
+A??
+AAA
+Case #90:
+AAAE
+BBCC
+DDDD
+Case #91:
+ABBB
+CCDD
+EFFF
+Case #92:
+BAC
+Case #93:
+DD?
+DDD
+CCC
+ABE
+Case #94:
+DDD
+FFF
+CCA
+BBE
+Case #95:
+DDDD
+CAAA
+EBBB
+Case #96:
+CCCB
+DDDE
+AAAA
+Case #97:
+ACD
+EEB
+EEB
+EEB
+Case #98:
+BB
+CA
+Case #99:
+AAAA
+BBBB
+CCCC
+Case #100:
+AAAD
+EBBB
+CCCC
