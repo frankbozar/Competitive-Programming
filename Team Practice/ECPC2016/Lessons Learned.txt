@@ -1,0 +1,36 @@
+A
+	Nim
+	Proof before code
+	List Grundy numbers and observe
+	Count numbers carefully
+B
+	Shortest Path
+	Geometry
+C
+	Bipartite minVC
+	Geometry
+	Read the definition carefully
+D
+	Combinatorics
+	Complexity without DP?
+	Overflow?
+E
+	Shortest Path
+	Output format to be followed
+F
+	Math
+	Reading comprehension
+	MLE of treap caused by multi-cases
+	Sort according to x+p, and select greedily
+G
+	Inclusion and Exclusion
+H
+	Simple DP
+I
+	Geometry
+	Input Optimization
+J
+	DP on Tree
+K
+	Conditional Probability
+	???
