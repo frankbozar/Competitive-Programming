@@ -1,3 +1,4 @@
+#include<cmath>
 #include<cstdio>
 #include<vector>
 #include<algorithm>
@@ -28,7 +29,7 @@ int main()
                 double s=max((x1-rx)/vx, 0.0);
                 double y=ry+vy*s;
                 
-                if( y1<y2 && y1<=y && y<=y2 )
+                if( y1<=y && y<=y2 )
                     p=min(p, s), q=max(q, s);
             }
             
@@ -38,8 +39,19 @@ int main()
             swap(x2, y2);
         }
         
-        a.push_back(data(p+EPS, 1));
-        a.push_back(data(q-EPS, 0));
+        if( vx==0 && vy==0 && x1<=rx && rx<=x2 && y1<=ry && ry<=y2 )
+            p=0, q=INF;
+        
+        p+=EPS;
+        rx+=vx*p;
+        ry+=vy*p;
+        const int C=-100;
+        
+        if( !(log(rx-x1)>C && log(x2-rx)>C && log(ry-y1)>C && log(y2-ry)>C) )
+            p=INF, q=-INF;
+        
+        a.push_back(data(p, 1));
+        a.push_back(data(q, 0));
     }
     
     sort(a.begin(), a.end());
