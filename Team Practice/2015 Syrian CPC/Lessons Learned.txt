@@ -1,0 +1,35 @@
+A
+	Inequality
+B
+	Geometry
+	Pre-calculation with V, R, H
+C
+	Trie
+	DP
+D
+	Math
+	Can be done faster?
+E*
+	DP with case discussion?
+F
+	Brute Force
+G
+	Watery
+H
+	Watery
+I*
+	Calculate the number of pairs (A, B),
+	such that L≤A, B≤R and the binary representation of A xor B is palindromic.
+	0≤L≤R≤1e12	
+	No clues at all.
+J
+	DAG traversal
+	Read the problem carefully
+K
+	DP on tree
+	Probability
+	Read the problem carefully
+L
+	Simple DP
+M
+	Segment intersection detection
